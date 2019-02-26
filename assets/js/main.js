@@ -26,6 +26,11 @@ function shuffle(array){
 	}
 }
 
+// if (this.score == 0) {
+// 			this.hide(this.chart);
+// 			alert('ben');
+// 		}
+
 const view = {
 	timer:document.querySelector('#timer'),
 	score:document.querySelector('#score'),
@@ -34,6 +39,7 @@ const view = {
 	result: document.getElementById('result'),
 	info: document.getElementById('info'),
 	start: document.getElementById('start'),
+	chart: document.getElementById('chart'),
 
 
 	render(target,content,attributes){
@@ -55,16 +61,24 @@ const view = {
 		this.show(this.question);
 		this.show(this.response);
 		this.show(this.result);
+		
 		this.hide(this.start);
+		console.log("benjiro hide");
+		this.show(this.chart);
 		this.render(this.score,quizGame.score);
 		this.render(this.result, '');
 		this.render(this.info , '');
+		//this.show(this.chart);
 	},
 
 	itteration(){
+		
 		this.hide(this.question);
 		this.hide(this.response);
 		this.show(this.start);
+		console.log("benjiro");
+		//this.hide(this.chart);
+
 	},
 	buttons(array){
 		return `Ans: `+ array.map(value=>`<button class="btn btn-light btn-sm">${value}</button>`).join(' ');
@@ -130,7 +144,65 @@ countdown(){
 },
 
 gameOver(){
-	view.render(view.info, `Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${this.count}`);
+	var ctx = document.getElementById("myChart");
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Your Score"],
+        datasets: [{
+            label: '#',
+            data: [this.score],
+            backgroundColor: [
+                //'rgba(255, 99, 132, 0.2)',
+                '#36A2EB',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                //'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true,
+                    steps: 1,
+                                stepValue: 2,
+                                max: 10
+                }
+            }],
+
+            xAxes:[{
+     barPercentage: 0.5,
+    		gridLines: {
+        	display:false
+        }
+    }],
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+	view.render(view.info, `<div>Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${this.count}</div>`);
 	view.itteration();
 	clearInterval(this.timer);
 	
@@ -142,16 +214,7 @@ gameOver(){
 view.start.addEventListener('click',()=>quizGame.start(quiz),false);
 view.response.addEventListener('click',(event)=>quizGame.check(event),false);
 
-
-
-
-
-
-
-
-
-
-
+//console.log(quizGame.score);
 
 
 

@@ -8,11 +8,27 @@ body{
 html,body {
   font-family: Segoe UI,Frutiger,Frutiger Linotype,Dejavu Sans,Helvetica Neue,Arial,sans-serif; 
 }
-body { 
+/*body { 
   background-color: #F7F7F7;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}*/
+
+.jumbotron {
+
+height: 500px; 
+}
+body {
+  padding-bottom: 20px;
 }
 
+.navbar {
+  margin-bottom: 20px;
+}
+
+.scoFont{
+	font-size: 3vw;
+	color: green;
+}

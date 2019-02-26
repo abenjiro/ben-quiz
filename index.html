@@ -1,4 +1,101 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset='utf-8'>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+		 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+		
+	<script src="assets/js/Chart.min.js"></script>
+
+    <title>Quiz</title>
+
+   
+
+  </head>
+
+  <body>
+
+    
+
+    <div class="container">
+      
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">BENS QUIZ<span class="sr-only">(current)</span></a>
+            </li>
+            
+            
+          </ul>
+        </div>
+      </nav>
+
+      <main role="main">
+        <div class="jumbotron shadow p-3 mb-5 border border-info">
+          <div class="col-sm-12 mx-auto py-3">
+          	<div class="col">
+          		<div ><h5>Timer: <span id="timer">40</span>  </h5></div>
+				<div ><h5>Score: <span id="score" class="scoFont">0</span> </h5></div>
+          	</div>
+
+          	<hr>
+          	<div class="row">
+          	<div class="col-sm-10">
+          		<div id="question" class="lead font-weight-bold">
+							<p class="lead"> Example: What is the name of the big ship?</p>
+						</div>
+						<br>
+						<div id="response">
+							<p>Ans: <button class="btn btn-success btn-sm">Titanic</button> <button class="btn btn-light btn-sm">Botanic</button> <button class="btn btn-light btn-sm">Utanic</button></p>
+						</div>
+						<br>
+						<code><div id="result"></div></code>
+						<br>
+						 <samp class="shadow "><div id="info"></div></samp>
+
+						<br>
+
+          	</div>
+          	<div class="col-sm-2">
+          		<div class="float-right" id="chart">
+							<canvas id="myChart" width="auto" height="260"></canvas>
+						</div>
+          	</div>
+            </div>
+            <hr style="margin-top: 0px;">
+            <div class="col text-center align-bottom">
+            	<p>
+            		<button class="btn btn-info text-center" id="start">Start  &raquo;</button>
+             
+            </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script src="assets/js/jquery-3.3.1.slim.min.js" ></script>
+	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+	<script src="assets/js/popper.min.js" ></script>
+	<script src="assets/js/main.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+	
+  </body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html>
 <head>
 
@@ -7,11 +104,11 @@
 	
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
 		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 		<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 		
-	
+	<script src="assets/js/Chart.min.js"></script>
 		
 		
 
@@ -24,7 +121,7 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-lg-10">
-					<div class="jumbotron shadow p-3 mb-5 border border-info" style="margin-top: 250px">
+					<div class="jumbotron shadow p-3 mb-5 border border-info" style="margin-top: 200px">
 						<div class="col">
 							<h3 class="text-center"><u>BENS QUIZ</u></h3>
 						</div>
@@ -32,6 +129,9 @@
 						<div ><h5>Timer: <span id="timer">40</span>  </h5></div>
 						<div ><h5>Score: <span id="score">0</span> </h5></div>
 						<hr>
+						<div class="float-right" id="chart">
+							<canvas id="myChart" width="auto" height="290"></canvas>
+						</div>
 						<div id="question" class="lead">
 							<p class="lead"> Example: What is the name of the big ship?</p>
 						</div>
@@ -45,8 +145,9 @@
 						 <samp class="shadow "><div id="info"></div></samp>
 
 						<br>
-						<hr>
-						<div class="col text-center">
+						<hr style="margin-top: 100px;">
+						
+						<div class="col text-center align-bottom">
 							<button class="btn btn-info text-center" id="start">Start</button>
 						</div>
 						
@@ -62,5 +163,16 @@
 	<script src="assets/js/popper.min.js" ></script>
 	<script src="assets/js/main.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+	
+	<script type="text/javascript">
+		
+
+
+ 
+
+</script>
+
+	</script>
+
 </body>
-</html>
+</html> -->
