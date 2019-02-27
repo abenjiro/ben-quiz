@@ -1,3 +1,5 @@
+document.getElementById('reset').style.display ='none';
+
 const quiz = [
 	{ ques:"IT Consortium is one of ........ leading financial services technology solutions provider.", ans:"Africa’s"},
 	{ ques:"We exist to provide ........ systems that bring obvious value to our patrons.", ans:"innovative"},
@@ -26,10 +28,7 @@ function shuffle(array){
 	}
 }
 
-// if (this.score == 0) {
-// 			this.hide(this.chart);
-// 			alert('ben');
-// 		}
+
 
 const view = {
 	timer:document.querySelector('#timer'),
@@ -40,6 +39,9 @@ const view = {
 	info: document.getElementById('info'),
 	start: document.getElementById('start'),
 	chart: document.getElementById('chart'),
+	progress: document.getElementById('progress'),
+	reset: document.getElementById('reset'),
+
 
 
 	render(target,content,attributes){
@@ -61,27 +63,30 @@ const view = {
 		this.show(this.question);
 		this.show(this.response);
 		this.show(this.result);
-		
+
+		this.hide(this.reset);
 		this.hide(this.start);
-		console.log("benjiro hide");
-		this.show(this.chart);
+		this.hide(this.chart);
+		//console.log("benjiro hide");
+		
 		this.render(this.score,quizGame.score);
 		this.render(this.result, '');
 		this.render(this.info , '');
-		//this.show(this.chart);
+		this.show(this.chart);
 	},
 
 	itteration(){
-		
+		this.hide(this.chart);
 		this.hide(this.question);
 		this.hide(this.response);
-		this.show(this.start);
+		this.hide(this.start);
+		this.show(this.reset);
 		console.log("benjiro");
-		//this.hide(this.chart);
+		this.show(this.chart);
 
 	},
 	buttons(array){
-		return `Ans: `+ array.map(value=>`<button class="btn btn-light btn-sm">${value}</button>`).join(' ');
+		return `Ans: `+ array.map(value=>`<button class="btn btn-outline-info btn-sm">${value}</button>`).join(' ');
 	}
 
 };
@@ -93,8 +98,10 @@ const quizGame={
 		this.count = 0;
 		this.questions = [...quiz];
 		view.setup();
-		this.secondsRemaining = 40;
+		this.secondsRemaining = 25;
 		this.timer = setInterval(this.countdown,1000);
+		this.progSecondsRemaining = 100;
+		this.progtimer = setInterval(this.progcountdown,250);
 		this.ask();
 	},
 
@@ -143,18 +150,31 @@ countdown(){
 	}
 },
 
+progcountdown(){
+	quizGame.progSecondsRemaining--;
+	
+	this.progress.style.width = `${quizGame.progSecondsRemaining}%`;
+	
+	console.log(quizGame.progSecondsRemaining);
+	//view.render(view.progress,quizGame.progSecondsRemaining);
+	if (quizGame.progSecondsRemaining==0) {
+		quizGame.gameOver();
+		
+	}
+},
+
 gameOver(){
 	var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ["Your Score"],
+        labels: ["You"],
         datasets: [{
-            label: '#',
+            label: 'Score',
             data: [this.score],
             backgroundColor: [
                 //'rgba(255, 99, 132, 0.2)',
-                '#36A2EB',
+                '#182B59',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
@@ -202,9 +222,10 @@ var myChart = new Chart(ctx, {
 
 
 
-	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${this.count}</div>`);
+	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of 10</div>`);
 	view.itteration();
 	clearInterval(this.timer);
+	clearInterval(this.progtimer);
 	
 }
 
