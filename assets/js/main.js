@@ -202,7 +202,7 @@ var myChart = new Chart(ctx, {
 
 
 
-	view.render(view.info, `<div>Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${this.count}</div>`);
+	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${this.count}</div>`);
 	view.itteration();
 	clearInterval(this.timer);
 	
