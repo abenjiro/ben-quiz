@@ -1,0 +1,52 @@
+{
+	"questions":
+	[{
+		"ques":"IT Consortium is one of ........ leading financial services technology solutions provider.",
+		"ans":"Africa’s"
+	},
+	{
+		"ques":"We exist to provide ........ systems that bring obvious value to our patrons.",
+		"ans":"innovative"
+	},
+	{
+		"ques":"We are committed to high ...... standards both internally and externally.",
+		"ans":"Ethical"
+	},
+	{
+		"ques":"We strive for .......  in our approach to work and delivery.",
+		"ans":"excellence"
+	},
+	{
+		"ques":"We demonstrate ....... in the design of our work and solutions.",
+		"ans":"Creativity"
+	},
+	{
+		"ques":"Our clients trust us to provide them ....... solutions to increase efficiency",
+		"ans":"innovative"
+	},
+	{
+		"ques":"ITC is at home in ensuring that ...... value is derived from what we offer",
+		"ans":"maximum"
+	},
+	{
+		"ques":"We love to solve problems, and to solve them ......",
+		"ans":"holistically"
+	},
+	{
+		"ques":"Our products and services are architected around ......",
+		"ans":"Transflow"
+	},
+	{
+		"ques":"our flagship product, is a payment platform that seeks to simplify and improve the ...... of payments between customers",
+		"ans":"efficiency"
+	},
+	{
+		"ques":"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use",
+		"ans":"realtime"
+	},
+	{
+		"ques":"IT Consortium has completed the ..... certification programme",
+		"ans":"PCI-DSS"
+	},
+]
+}

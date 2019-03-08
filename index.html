@@ -1,102 +1,138 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset='utf-8'>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-		 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-		<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-		
-	<script src="assets/js/Chart.min.js"></script>
+<head>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Quiz</title>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
 
-   
+  <script src="assets/js/Chart.min.js"></script>
 
-  </head>
+  <title>Quiz</title>
 
-  <body>
 
-    
 
-    <div class="container">
-      
+</head>
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+<body>
 
-        <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">BENS QUIZ<span class="sr-only">(current)</span></a>
-            </li>
-            
-            
-          </ul>
-        </div>
-      </nav>
 
-      <main role="main">
-        <div class="card shadow p-3 mb-5 bg-light">
-        	<div class="progress" style="height: 3px;">
-  <div id="progress" class="progress-bar" role="progressbar" style="width: 100%; height: 3px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+
+  <div class="container">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-md-center" id="navbarsExample10">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">BENS QUIZ<span class="sr-only">(current)</span></a>
+          </li>
+
+
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main">
+      <div class="card shadow p-3 mb-5 bg-light">
+       <div class="progress" style="height: 3px;">
+        <div id="progress" class="progress-bar" role="progressbar" style="width: 100%; height: 3px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <div class="col-sm-12 mx-auto py-3">
+       <div class="col">
+        <div ><h5>Timer: <span id="timer">25</span> <span class="small ">seconds</span></h5></div>
+        <div ><h5>Score: <span id="score" class="scoFont">0</span> </h5></div>
+      </div>
+
+      <hr>
+      <div class="row">
+       <div class="col-sm-9 card border-0">
+        <div  class="card-body">
+          <div id="question" class="lead font-weight-bold">
+           <p class="lead"> Example: What is the name of the big ship?</p>
+         </div>
+         <br>
+         <div id="response">
+           <p>Ans: <button class="btn btn-outline-info btn-sm">Titanic</button> <button class="btn btn-light btn-sm">Botanic</button> <button class="btn btn-light btn-sm">Utanic</button></p>
+         </div>
+         <br>
+         <code><div id="result"></div></code>
+         <br>
+         <samp class="shadow "><div id="info"></div></samp>
+
+         <br>
+
+       </div>
+     </div>
+     <div class="col-sm-3 card border-0" id="chart">
+      <div class="float-right card-body" >
+       <canvas id="myChart" width="auto" height="230"></canvas>
+     </div>
+   </div>
+ </div>
+ <!-- <hr style="margin-top: 0px;"> --><br>
+ <div class="col text-center align-bottom">
+   <p>
+    <button class="btn btn-info text-center" id="start">Start  &raquo;</button>  <button class="btn btn-warning text-center" id="reset" onclick="window.location='' ">Reset</button>
+    <button type="button" class="btn btn-primary float-right" id="config" data-toggle="modal" data-target="#quizModal">Config</button>
+
+  </p>
 </div>
-          <div class="col-sm-12 mx-auto py-3">
-          	<div class="col">
-          		<div ><h5>Timer: <span id="timer">25</span> <span class="small ">seconds</span></h5></div>
-				<div ><h5>Score: <span id="score" class="scoFont">0</span> </h5></div>
-          	</div>
+</div>
+</div>
+</main>
+</div>
 
-          	<hr>
-          	<div class="row">
-          	<div class="col-sm-9 card border-0">
-          		<div  class="card-body">
-          		<div id="question" class="lead font-weight-bold">
-							<p class="lead"> Example: What is the name of the big ship?</p>
-						</div>
-						<br>
-						<div id="response">
-							<p>Ans: <button class="btn btn-outline-info btn-sm">Titanic</button> <button class="btn btn-light btn-sm">Botanic</button> <button class="btn btn-light btn-sm">Utanic</button></p>
-						</div>
-						<br>
-						<code><div id="result"></div></code>
-						<br>
-						 <samp class="shadow "><div id="info"></div></samp>
 
-						<br>
-				
-				</div>
-          	</div>
-          	<div class="col-sm-3 card border-0" id="chart">
-          		<div class="float-right card-body" >
-							<canvas id="myChart" width="auto" height="230"></canvas>
-						</div>
-          	</div>
-            </div>
-            <!-- <hr style="margin-top: 0px;"> --><br>
-            <div class="col text-center align-bottom">
-            	<p>
-            		<button class="btn btn-info text-center" id="start">Start  &raquo;</button>  <button class="btn btn-warning text-center" id="reset" onclick="window.location='' ">Reset</button>
-             
-            </p>
-            </div>
+
+<!-- Modal -->
+<div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalTitle" aria-hidden="true">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Quiz Configuration</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <div class="form-group">
+            <h6 class="col-5">New Timer: </h6><input type="text" name="newTimer" id="newTimer" class="form-control col-2"><i> Seconds</i>
+            
           </div>
-        </div>
-      </main>
-    </div>
+          <br>
+          <div class="form-group">
+            <h6 class="col-5">Total Questions: </h6><input type="text" name="" id="totalQuestions" class="form-control col-2">
+          </div>
+        </form>
 
-    <script src="assets/js/jquery-3.3.1.slim.min.js" ></script>
-	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-	<script src="assets/js/popper.min.js" ></script>
-	<script src="assets/js/main.js"></script>
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
-	
-  </body>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="changeQuiz()">Okay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script src="assets/js/jquery-3.3.1.slim.min.js" ></script>
+<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/popper.min.js" ></script>
+<script src="assets/js/main.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+
+</body>
 </html>
 
 

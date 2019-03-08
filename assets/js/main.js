@@ -1,3 +1,30 @@
+
+
+
+
+function changeQuiz(){
+	var newTimerConfig = document.getElementById('newTimer').value;
+	var totalQuestions = document.getElementById('totalQuestions').value;
+
+	var newTimer= document.querySelector('#timer');
+	newTimer.innerText = newTimerConfig;
+
+	// alert(totalQuestions);
+
+	$('#quizModal').modal('hide');
+
+
+}
+
+
+
+
+
+
+
+
+
+
 document.getElementById('reset').style.display ='none';
 
 const quiz = [
@@ -14,6 +41,8 @@ const quiz = [
 	{ ques:"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use", ans:"realtime"},
 	{ ques:"IT Consortium has completed the ..... certification programme", ans:"PCI-DSS"},
 ];
+
+console.log(quiz.length);
 
 function random(a,b=1){
 	if (b===1) {
@@ -41,6 +70,7 @@ const view = {
 	chart: document.getElementById('chart'),
 	progress: document.getElementById('progress'),
 	reset: document.getElementById('reset'),
+	config: document.getElementById('config'),
 
 
 
@@ -67,6 +97,7 @@ const view = {
 		this.hide(this.reset);
 		this.hide(this.start);
 		this.hide(this.chart);
+		this.hide(this.config);
 		//console.log("benjiro hide");
 		
 		this.render(this.score,quizGame.score);
@@ -94,19 +125,31 @@ const view = {
 
 const quizGame={
 	start(quiz){
+		var newTimerConfig = document.getElementById('newTimer').value;
+		console.log(newTimerConfig);
 		this.score = 0;
 		this.count = 0;
 		this.questions = [...quiz];
+		console.log(this.questions.length);
 		view.setup();
-		this.secondsRemaining = 25;
+		this.secondsRemaining = `${newTimerConfig == "" ? 25: newTimerConfig}`;
 		this.timer = setInterval(this.countdown,1000);
 		this.progSecondsRemaining = 100;
-		this.progtimer = setInterval(this.progcountdown,250);
+		this.progtimer = setInterval(this.progcountdown,(`${newTimerConfig=="" ? 250 : (newTimerConfig*10)}`));
 		this.ask();
 	},
 
 	ask(ques){
-	if (this.questions.length > 2) {
+		var totalQuestions = document.getElementById('totalQuestions').value;
+
+      var limit = (quiz.length - (totalQuestions));
+      var check = quiz.length;
+
+      if (limit > quiz.length) {
+      	alert("Your total number of question is beyond limit. Change your total questions or add more questions to the system")
+      }
+
+	if (this.questions.length > `${limit == check ? 2: limit}`) {
 		shuffle(this.questions);
 		this.question = this.questions.pop();
 		this.count++;
@@ -164,6 +207,8 @@ progcountdown(){
 },
 
 gameOver(){
+	var maxValue = 10;
+	alert(maxValue);
 	var ctx = document.getElementById("myChart");
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -198,7 +243,7 @@ var myChart = new Chart(ctx, {
                     beginAtZero:true,
                     steps: 1,
                                 stepValue: 2,
-                                max: 10
+                                max: maxValue
                 }
             }],
 
@@ -222,7 +267,7 @@ var myChart = new Chart(ctx, {
 
 
 
-	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of 10</div>`);
+	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${totalQuestions.value == ""? '10' : totalQuestions.value}</div>`);
 	view.itteration();
 	clearInterval(this.timer);
 	clearInterval(this.progtimer);
