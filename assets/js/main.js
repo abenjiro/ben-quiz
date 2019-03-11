@@ -1,5 +1,6 @@
-
-
+if ($('#showWrongQuestions li').length == 0)  {
+		 	document.getElementById('solutionCard').style.display ='none';
+		 }
 
 
 function changeQuiz(){
@@ -12,8 +13,17 @@ function changeQuiz(){
 	// alert(totalQuestions);
 
 	$('#quizModal').modal('hide');
+	newTimerConfig == "";
+	totalQuestions == "";
 
 
+}
+
+
+function resetQuiz(){
+	window.location=''; 
+	let itemsArray = localStorage.getItem('quiz') ? JSON.parse(localStorage.getItem('quiz')) : [];
+	localStorage.clear();
 }
 
 
@@ -22,27 +32,25 @@ function changeQuiz(){
 
 
 
-
-
-
 document.getElementById('reset').style.display ='none';
+document.getElementById('solutionCard').style.display ='none';
 
 const quiz = [
-	{ ques:"IT Consortium is one of ........ leading financial services technology solutions provider.", ans:"Africa’s"},
-	{ ques:"We exist to provide ........ systems that bring obvious value to our patrons.", ans:"innovative"},
-	{ ques:"We are committed to high ...... standards both internally and externally.", ans:"Ethical"},
-	{ ques:"We strive for .......  in our approach to work and delivery.", ans:"excellence"},
-	{ ques:"We demonstrate ....... in the design of our work and solutions.", ans:"Creativity"},
-	{ ques:"Our clients trust us to provide them ....... solutions to increase efficiency", ans:"innovative"},
-	{ ques:"ITC is at home in ensuring that ...... value is derived from what we offer", ans:"maximum"},
-	{ ques:"We love to solve problems, and to solve them ......", ans:"holistically"},
-	{ ques:"Our products and services are architected around ......", ans:"Transflow"},
-	{ ques:"our flagship product, is a payment platform that seeks to simplify and improve the ...... of payments between customers", ans:"efficiency"},
-	{ ques:"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use", ans:"realtime"},
-	{ ques:"IT Consortium has completed the ..... certification programme", ans:"PCI-DSS"},
+{ ques:"IT Consortium is one of ........ leading financial services technology solutions provider.", ans:"Africa’s"},
+{ ques:"We exist to provide ........ systems that bring obvious value to our patrons.", ans:"innovative"},
+{ ques:"We are committed to high ...... standards both internally and externally.", ans:"Ethical"},
+{ ques:"We strive for .......  in our approach to work and delivery.", ans:"excellence"},
+{ ques:"We demonstrate ....... in the design of our work and solutions.", ans:"Creativity"},
+{ ques:"Our clients trust us to provide them ....... solutions to increase efficiency", ans:"innovative"},
+{ ques:"ITC is at home in ensuring that ...... value is derived from what we offer", ans:"maximum"},
+{ ques:"We love to solve problems, and to solve them ......", ans:"holistically"},
+{ ques:"Our products and services are architected around ......", ans:"Transflow"},
+{ ques:"our flagship product, is a payment platform that seeks to simplify and improve the ...... of payments between customers", ans:"efficiency"},
+{ ques:"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use", ans:"realtime"},
+{ ques:"IT Consortium has completed the ..... certification programme", ans:"PCI-DSS"},
 ];
 
-console.log(quiz.length);
+//console.log(quiz.length);
 
 function random(a,b=1){
 	if (b===1) {
@@ -71,6 +79,7 @@ const view = {
 	progress: document.getElementById('progress'),
 	reset: document.getElementById('reset'),
 	config: document.getElementById('config'),
+	solutionCard: document.getElementById("solutionCard"),
 
 
 
@@ -96,6 +105,7 @@ const view = {
 
 		this.hide(this.reset);
 		this.hide(this.start);
+		this.hide(this.solutionCard);
 		this.hide(this.chart);
 		this.hide(this.config);
 		//console.log("benjiro hide");
@@ -103,6 +113,7 @@ const view = {
 		this.render(this.score,quizGame.score);
 		this.render(this.result, '');
 		this.render(this.info , '');
+		
 		this.show(this.chart);
 	},
 
@@ -112,8 +123,9 @@ const view = {
 		this.hide(this.response);
 		this.hide(this.start);
 		this.show(this.reset);
-		console.log("benjiro");
+		//console.log("benjiro");
 		this.show(this.chart);
+		this.show(this.solutionCard);
 
 	},
 	buttons(array){
@@ -142,46 +154,71 @@ const quizGame={
 	ask(ques){
 		var totalQuestions = document.getElementById('totalQuestions').value;
 
-      var limit = (quiz.length - (totalQuestions));
-      var check = quiz.length;
+		var limit = (quiz.length - (totalQuestions));
+		var check = quiz.length;
 
-      if (limit > quiz.length) {
-      	alert("Your total number of question is beyond limit. Change your total questions or add more questions to the system")
-      }
 
-	if (this.questions.length > `${limit == check ? 2: limit}`) {
-		shuffle(this.questions);
-		this.question = this.questions.pop();
-		this.count++;
-		const options = [this.questions[0].ans,this.questions[1].ans,this.question.ans];
-		shuffle(options);
-		const question = `${this.count}. ${this.question.ques}?`;
-		view.render(view.question,question);
-		view.render(view.response,view.buttons(options));
-	}else {
-		this.gameOver();
-	}
 
-},
-check(event){
+		if (this.questions.length > `${limit == check ? 2: limit}`) {
+			shuffle(this.questions);
+			this.question = this.questions.pop();
+			this.count++;
+			const options = [this.questions[0].ans,this.questions[1].ans,this.question.ans];
+			shuffle(options);
+			const question = `${this.count}. ${this.question.ques}?`;
+			view.render(view.question,question);
+			view.render(view.response,view.buttons(options));
+		}else if (check < totalQuestions) {
+			alert("Your total number of question is beyond limit. Change your total questions or add more questions to the system");
+		}
+
+		else {
+			this.gameOver();
+		}
+
+	},
+	check(event){
 		console.log('check(event) invoked');
 	//event.preventDefault();
 	const response = event.target.textContent;
 	const answer = this.question.ans;
+	const questionQ = this.question.ques;
 	if (response === answer) {
 		//alert('answer');
 		$(function () { //ready
-          toastr.success('Correct Answer');
-      });
+			toastr.success('Correct Answer');
+		});
 		view.render(view.result, 'Correct',{'class':'correct'});
 		this.score++;
 		view.render(view.score, this.score);
 	}else{
 		$(function () { //ready
-          toastr.error(`Wrong! the answer is ${answer.toUpperCase()}`);
-      });
+			toastr.error(`Wrong! the answer is ${answer.toUpperCase()}`);
+		});
+		//alert(this.question.ques);
+		var myQuiz = {question: questionQ, answer: answer};
+		let itemsArray = localStorage.getItem('quiz') ? JSON.parse(localStorage.getItem('quiz')) : [];
+
+		itemsArray.push(myQuiz);
+		localStorage.setItem('quiz', JSON.stringify(itemsArray));
+
+		const data = JSON.parse(localStorage.getItem('quiz'));
+		displayResult = document.getElementById("showWrongQuestions");
+
+		displayResult.innerHTML = '';
+
+		for (var i = 0; i < data.length; i++) {
+			displayResult.innerHTML+=`
+			<li>${data[i].question} <i class="text-danger">${data[i].answer}</i></li>
+			`;
+			
+		}
+
+		 
 		view.render(view.result, `Wrong! the correct answer was ${answer}`,{'class':'wrong'});
-	}
+	}if ($('#showWrongQuestions li').length == 0)  {
+		 	document.getElementById('solutionCard').style.display ='none';
+		 }
 	//view.resetForm();
 	this.ask();
 },
@@ -208,54 +245,54 @@ progcountdown(){
 
 gameOver(){
 	var maxValue = 10;
-	alert(maxValue);
+	//alert(maxValue);
 	var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["You"],
-        datasets: [{
-            label: 'Score',
-            data: [this.score],
-            backgroundColor: [
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: ["You"],
+			datasets: [{
+				label: 'Score',
+				data: [this.score],
+				backgroundColor: [
                 //'rgba(255, 99, 132, 0.2)',
                 '#182B59',
                 'rgba(255, 206, 86, 0.2)',
                 'rgba(75, 192, 192, 0.2)',
                 'rgba(153, 102, 255, 0.2)',
                 'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
+                ],
+                borderColor: [
                 //'rgba(255,99,132,1)',
                 'rgba(54, 162, 235, 1)',
                 'rgba(255, 206, 86, 1)',
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true,
-                    steps: 1,
-                                stepValue: 2,
-                                max: maxValue
-                }
-            }],
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+        	scales: {
+        		yAxes: [{
+        			ticks: {
+        				beginAtZero:true,
+        				steps: 1,
+        				stepValue: 2,
+        				max: maxValue
+        			}
+        		}],
 
-            xAxes:[{
-     barPercentage: 0.5,
-    		gridLines: {
-        	display:false
+        		xAxes:[{
+        			barPercentage: 0.5,
+        			gridLines: {
+        				display:false
+        			}
+        		}],
+        	}
         }
-    }],
-        }
-    }
-});
+    });
 
 
 
@@ -281,6 +318,7 @@ view.start.addEventListener('click',()=>quizGame.start(quiz),false);
 view.response.addEventListener('click',(event)=>quizGame.check(event),false);
 
 //console.log(quizGame.score);
-
-
-
+// function dataObjectUpdated(){
+//               localStorage.setItem('quiz', JSON.stringify(itemsArray));
+//               console.log(data);
+//             }

@@ -81,7 +81,7 @@
  <!-- <hr style="margin-top: 0px;"> --><br>
  <div class="col text-center align-bottom">
    <p>
-    <button class="btn btn-info text-center" id="start">Start  &raquo;</button>  <button class="btn btn-warning text-center" id="reset" onclick="window.location='' ">Reset</button>
+    <button class="btn btn-info text-center" id="start">Start  &raquo;</button>  <button class="btn btn-warning text-center" id="reset" onclick="resetQuiz()">Reset</button>
     <button type="button" class="btn btn-primary float-right" id="config" data-toggle="modal" data-target="#quizModal">Config</button>
 
   </p>
@@ -89,6 +89,26 @@
 </div>
 </div>
 </main>
+
+<div class="row" >
+  <div class="col-12">
+  <div class="card shadow" id="solutionCard">
+    <div class="card-body">
+      <div class="card-title">
+        <p class="text-muted">Solutions To Wrong Answers</p>
+      </div>
+      <hr>
+      <div>
+        <ul id="showWrongQuestions">
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
 </div>
 
 
