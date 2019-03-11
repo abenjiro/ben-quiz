@@ -328,7 +328,7 @@ gameOver(){
 	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${totalQuestions.value == ""? (quiz.length-2) : totalQuestions.value}.</div>
 		
 		`);
-	//<div>You answered ${(this.score < (quiz.length-2))?this.count-1:(quiz.length-2)} questions.</div>
+	//<div>You answered ${(this.score < (quiz.length-2))?this.count-1 :(quiz.length-2)} questions.</div>
 	view.itteration();
 	clearInterval(this.timer);
 	clearInterval(this.progtimer);
