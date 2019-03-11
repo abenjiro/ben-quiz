@@ -1,33 +1,18 @@
-if ($('#showWrongQuestions li').length == 0)  {
-		 	document.getElementById('solutionCard').style.display ='none';
-		 }
 
 
-function changeQuiz(){
-	var newTimerConfig = document.getElementById('newTimer').value;
-	var totalQuestions = document.getElementById('totalQuestions').value;
-
-	var newTimer= document.querySelector('#timer');
-	newTimer.innerText = newTimerConfig;
-
-	// alert(totalQuestions);
-
-	$('#quizModal').modal('hide');
-	newTimerConfig == "";
-	totalQuestions == "";
-
-
-}
 
 
 function resetQuiz(){
 	window.location=''; 
-	let itemsArray = localStorage.getItem('quiz') ? JSON.parse(localStorage.getItem('quiz')) : [];
-	localStorage.clear();
+	
+	window.localStorage.removeItem('quiz');
+
 }
 
 
-
+function clearStorage() {
+	window.localStorage.removeItem('quiz');
+}
 
 
 
@@ -41,16 +26,55 @@ const quiz = [
 { ques:"We are committed to high ...... standards both internally and externally.", ans:"Ethical"},
 { ques:"We strive for .......  in our approach to work and delivery.", ans:"excellence"},
 { ques:"We demonstrate ....... in the design of our work and solutions.", ans:"Creativity"},
-{ ques:"Our clients trust us to provide them ....... solutions to increase efficiency", ans:"innovative"},
-{ ques:"ITC is at home in ensuring that ...... value is derived from what we offer", ans:"maximum"},
+{ ques:"Our clients trust us to provide them ....... solutions to increase efficiency.", ans:"innovative"},
+{ ques:"ITC is at home in ensuring that ...... value is derived from what we offer.", ans:"maximum"},
 { ques:"We love to solve problems, and to solve them ......", ans:"holistically"},
 { ques:"Our products and services are architected around ......", ans:"Transflow"},
-{ ques:"our flagship product, is a payment platform that seeks to simplify and improve the ...... of payments between customers", ans:"efficiency"},
-{ ques:"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use", ans:"realtime"},
-{ ques:"IT Consortium has completed the ..... certification programme", ans:"PCI-DSS"},
+{ ques:"our flagship product, is a payment platform that seeks to simplify and improve the ...... of payments between customers.", ans:"efficiency"},
+{ ques:"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use.", ans:"realtime"},
+{ ques:"IT Consortium has completed the ..... certification programme.", ans:"PCI-DSS"},
+//{ ques:"We adapt ..... to create systems that provide clear competitive advantages to our customers", ans:"technology"},
+// { ques:"With several years of experience working with so many clients and architecting various enterprise ....", ans:"solutions"},
+// { ques:"we are excited about helping you find a .... path in your current or and new challenges.", ans:"clear"},
 ];
 
 //console.log(quiz.length);
+var available = document.getElementById('available');
+available.innerText = quiz.length - 2;
+
+function changeQuiz(){
+	var newTimerConfig = document.getElementById('newTimer');
+	var totalQuestions = document.getElementById('totalQuestions');
+
+
+	var newTimer= document.querySelector('#timer');
+	
+
+	// alert(totalQuestions);
+	if (newTimerConfig.value == "") {
+		alert("Please enter new Time value. ");
+
+	}else if (totalQuestions.value == "" ) {
+		alert("Please enter new total number of questions");
+	}
+	else if ((quiz.length-2) < totalQuestions.value) {
+		alert("Your total number of question is beyond limit. Change your total questions value or add more questions to the system");
+		totalQuestions.value = '';
+	}
+
+	else{
+		$('#quizModal').modal('hide');
+		newTimer.innerText = newTimerConfig.value;
+		$(function () { //ready
+			toastr.success('Configurations successfully applied')
+			
+		});
+	}
+
+}
+
+
+
 
 function random(a,b=1){
 	if (b===1) {
@@ -168,10 +192,7 @@ const quizGame={
 			const question = `${this.count}. ${this.question.ques}?`;
 			view.render(view.question,question);
 			view.render(view.response,view.buttons(options));
-		}else if (check < totalQuestions) {
-			alert("Your total number of question is beyond limit. Change your total questions or add more questions to the system");
 		}
-
 		else {
 			this.gameOver();
 		}
@@ -206,19 +227,19 @@ const quizGame={
 		displayResult = document.getElementById("showWrongQuestions");
 
 		displayResult.innerHTML = '';
+		var countOuput = 0;
 
 		for (var i = 0; i < data.length; i++) {
+			countOuput++;
 			displayResult.innerHTML+=`
-			<li>${data[i].question} <i class="text-danger">${data[i].answer}</i></li>
+			<li>${countOuput}. ${data[i].question}<br> Ans: <i class="text-danger col">${data[i].answer}</i></li>
 			`;
 			
 		}
 
-		 
+
 		view.render(view.result, `Wrong! the correct answer was ${answer}`,{'class':'wrong'});
-	}if ($('#showWrongQuestions li').length == 0)  {
-		 	document.getElementById('solutionCard').style.display ='none';
-		 }
+	}
 	//view.resetForm();
 	this.ask();
 },
@@ -235,7 +256,7 @@ progcountdown(){
 	
 	this.progress.style.width = `${quizGame.progSecondsRemaining}%`;
 	
-	console.log(quizGame.progSecondsRemaining);
+	//console.log(quizGame.progSecondsRemaining);
 	//view.render(view.progress,quizGame.progSecondsRemaining);
 	if (quizGame.progSecondsRemaining==0) {
 		quizGame.gameOver();
@@ -244,7 +265,7 @@ progcountdown(){
 },
 
 gameOver(){
-	var maxValue = 10;
+	var maxValue = parseInt(totalQuestions.value) || (parseInt(quiz.length)-2);
 	//alert(maxValue);
 	var ctx = document.getElementById("myChart");
 	var myChart = new Chart(ctx, {
@@ -304,7 +325,10 @@ gameOver(){
 
 
 
-	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${totalQuestions.value == ""? '10' : totalQuestions.value}</div>`);
+	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${totalQuestions.value == ""? (quiz.length-2) : totalQuestions.value}.</div>
+		
+		`);
+	//<div>You answered ${(this.score < (quiz.length-2))?this.count-1:(quiz.length-2)} questions.</div>
 	view.itteration();
 	clearInterval(this.timer);
 	clearInterval(this.progtimer);
@@ -316,9 +340,37 @@ gameOver(){
 
 view.start.addEventListener('click',()=>quizGame.start(quiz),false);
 view.response.addEventListener('click',(event)=>quizGame.check(event),false);
+if ($('#showWrongQuestions li').length == 0)  {
+	document.getElementById('solutionCard').style.display ='none';
+	//alert("ben");
+}
 
-//console.log(quizGame.score);
-// function dataObjectUpdated(){
-//               localStorage.setItem('quiz', JSON.stringify(itemsArray));
-//               console.log(data);
-//             }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

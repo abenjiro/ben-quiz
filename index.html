@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-  <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
 
   <script src="assets/js/Chart.min.js"></script>
 
@@ -18,7 +18,7 @@
 
 </head>
 
-<body>
+<body onload="clearStorage()">
 
 
 
@@ -82,7 +82,7 @@
  <div class="col text-center align-bottom">
    <p>
     <button class="btn btn-info text-center" id="start">Start  &raquo;</button>  <button class="btn btn-warning text-center" id="reset" onclick="resetQuiz()">Reset</button>
-    <button type="button" class="btn btn-primary float-right" id="config" data-toggle="modal" data-target="#quizModal">Config</button>
+    <button type="button" class="btn btn-primary float-right" id="config" data-toggle="modal" data-target="#quizModal"><i class="fas fa-wrench"></i></button>
 
   </p>
 </div>
@@ -92,19 +92,19 @@
 
 <div class="row" >
   <div class="col-12">
-  <div class="card shadow" id="solutionCard">
-    <div class="card-body">
-      <div class="card-title">
-        <p class="text-muted">Solutions To Wrong Answers</p>
-      </div>
-      <hr>
-      <div>
-        <ul id="showWrongQuestions">
-          
-        </ul>
+    <div class="card shadow-sm p-3 mb-5 bg-white rounded" id="solutionCard">
+      <div class="card-body">
+        <div class="card-title">
+          <p class="text-muted text-center" style="font-size: 13px;">Solutions To Wrong Answers</p>
+        </div>
+        <hr>
+        <div>
+          <ul id="showWrongQuestions">
+
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </div>
 
@@ -118,27 +118,39 @@
   <div class="modal-dialog " role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Quiz Configuration</h5>
+        <h5 class="modal-title justify-content-center" id="">Quiz Configuration</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form class="form-inline">
-          <div class="form-group">
-            <h6 class="col-5">New Timer: </h6><input type="text" name="newTimer" id="newTimer" class="form-control col-2"><i> Seconds</i>
+          <table>
+            <tbody>
+              <tr>
+                <td><h6 style="font-size: 13px;"> New Timer: </h6> </td>
+                <td><input type="number" min="1" step="1" name="newTimer" id="newTimer" placeholder="eg: 10" class="form-control form-control-sm col-4" onkeypress="return event.charCode >= 48"> <span class="small text-muted">seconds</span>  </td>
+              </tr>
+              <tr>
+                <td><h6 style="font-size: 13px;">Total Questions: </h6></td>
+                <td><input type="number" min="1" step="1" name="" id="totalQuestions" placeholder="eg: 5" class="form-control form-control-sm col-4" onkeypress="return event.charCode >= 48"> <span class="small text-muted">(NB: Total quiz available questions are <i id="available"></i>)</span></td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- <div class="form-group">
+            <h6 class="col-5">New Timer: </h6><i> Seconds</i>
             
           </div>
           <br>
           <div class="form-group">
-            <h6 class="col-5">Total Questions: </h6><input type="text" name="" id="totalQuestions" class="form-control col-2">
-          </div>
+            <h6 class="col-5">Total Questions: </h6>
+          </div> -->
         </form>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="changeQuiz()">Okay</button>
+        <button type="button" class="btn btn-success" onclick="changeQuiz()">Apply</button>
       </div>
     </div>
   </div>
@@ -150,6 +162,7 @@
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/popper.min.js" ></script>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/all.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 
 </body>
