@@ -232,7 +232,7 @@ const quizGame={
 		for (var i = 0; i < data.length; i++) {
 			countOuput++;
 			displayResult.innerHTML+=`
-			<li>${countOuput}. ${data[i].question}<br> Ans: <i class="text-danger col">${data[i].answer}</i></li>
+			<li>${countOuput}. ${data[i].question}<br> Ans: <i class="text-success col">${data[i].answer}</i></li>
 			`;
 			
 		}
@@ -326,9 +326,13 @@ gameOver(){
 
 
 	view.render(view.info, `<div style="margin-top:75px;">Quiz Over, you scored ${this.score} point${this.score !==1 ? 's': ''} out of ${totalQuestions.value == ""? (quiz.length-2) : totalQuestions.value}.</div>
-		
+
+
+		  
 		`);
-	//<div>You answered ${(this.score < (quiz.length-2))?this.count-1 :(quiz.length-2)} questions.</div>
+	//<div>You answered ${((quiz.length-2) > this.count)?this.count-1  :(this.count)} questions.</div>
+	//<div>You answered ${(totalQuestions.value > this.count)?this.count-1 +"first"+totalQuestions.value  :(this.count)+"second"+totalQuestions.value } questions.</div>
+	console.log(totalQuestions.value+"benji");
 	view.itteration();
 	clearInterval(this.timer);
 	clearInterval(this.progtimer);
