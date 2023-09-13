@@ -2,14 +2,14 @@
 
 #BEN QUIZ APPLICATION
 
-This quiz application has a default mode with defined time set and questions to answer. After answering your score together with a list of all wrong questions and answers will be seen.
+This quiz application has a default mode with a defined time set to questions. After completing the quiz, your score, together with a list of all wrong answers will be seen.
 
-The application also has a configuration for user to set his own time and number of questions.
+The application allows the user configure his/her own time and number of questions.
 Bens Quiz provides a simple graphical chart of your score after quiz over.  
 
 
 ##Installation
-Runs of most current browsers. Google Chrome preferred.
+Runs on most current browsers. Google Chrome preferred.
 
 
 ##Usage
@@ -24,7 +24,6 @@ Click on start button below, on application launch to start the quiz.
 The default timer is 25 seconds for the whole number of questions in the quiz.
 
 The total number of questions are currently 10. 
-	NB: More questions can be added to the system and new questions will add up to the default mode.
 
 Click on reset to start the whole process again in default mode.
 
@@ -53,6 +52,7 @@ NB:
 
 Bootstrap 4
 Javascript
+toastr 
 Chart js
 
 

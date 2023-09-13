@@ -1,12 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset='utf-8'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="assets/css/all.min.css">
 
@@ -26,7 +27,8 @@
 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light rounded">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10" aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample10"
+        aria-controls="navbarsExample10" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -43,129 +45,143 @@
 
     <main role="main">
       <div class="card shadow p-3 mb-5 bg-light">
-       <div class="progress" style="height: 3px;">
-        <div id="progress" class="progress-bar" role="progressbar" style="width: 100%; height: 3px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-      </div>
-      <div class="col-sm-12 mx-auto py-3">
-       <div class="col">
-        <div ><h5>Timer: <span id="timer">25</span> <span class="small ">seconds</span></h5></div>
-        <div ><h5>Score: <span id="score" class="scoFont">0</span> </h5></div>
-      </div>
-
-      <hr>
-      <div class="row">
-       <div class="col-sm-9 card border-0">
-        <div  class="card-body">
-          <div id="question" class="lead font-weight-bold">
-           <p class="lead"> Example: Who is the CEO of IT Consortium?</p>
-         </div>
-         <br>
-         <div id="response">
-           <p>Ans: <button class="btn btn-light btn-sm">Peter</button> <button class="btn btn-outline-info btn-sm">Romeo</button> <button class="btn btn-light btn-sm">Juliet</button></p>
-         </div>
-         <br>
-         <code><div id="result" class="text-muted"></div></code>
-         <br>
-         <samp class="shadow "><div id="info"></div></samp>
-
-         <br>
-
-       </div>
-     </div>
-     <div class="col-sm-3 card border-0" id="chart">
-      <div class="float-right card-body" >
-       <canvas id="myChart" width="auto" height="230"></canvas>
-     </div>
-   </div>
- </div>
- <!-- <hr style="margin-top: 0px;"> --><br>
- <div class="col text-center align-bottom">
-   <p>
-    <button class="btn btn-info text-center" id="start">Start  &raquo;</button>  <button class="btn btn-warning text-center" id="reset" onclick="resetQuiz()">Reset</button>
-    <button type="button" class="btn btn-primary float-right" id="config" data-toggle="modal" data-target="#quizModal"><i class="fas fa-wrench"></i></button>
-
-  </p>
-</div>
-</div>
-</div>
-</main>
-
-<div class="row" >
-  <div class="col-12">
-    <div class="card shadow-sm p-3 mb-5 bg-white rounded" id="solutionCard">
-      <div class="card-body">
-        <div class="card-title">
-          <p class="text-muted text-center" style="font-size: 13px;">Solutions To Wrong Answers</p>
+        <div class="progress" style="height: 3px;">
+          <div id="progress" class="progress-bar" role="progressbar" style="width: 100%; height: 3px;"
+            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-        <hr>
-        <div>
-          <ul id="showWrongQuestions">
-
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-</div>
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalTitle" aria-hidden="true">
-  <div class="modal-dialog " role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title justify-content-center" id="">Quiz Configuration</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form class="form-inline">
-          <table>
-            <tbody>
-              <tr>
-                <td><h6 style="font-size: 13px;"> New Timer: </h6> </td>
-                <td><input type="number" min="1" step="1" name="newTimer" id="newTimer" placeholder="eg: 10" class="form-control form-control-sm col-4" onkeypress="return event.charCode >= 48"> <span class="small text-muted">seconds</span>  </td>
-              </tr>
-              <tr>
-                <td><h6 style="font-size: 13px;">Total Questions: </h6></td>
-                <td><input type="number" min="1" step="1" name="" id="totalQuestions" placeholder="eg: 5" class="form-control form-control-sm col-4" onkeypress="return event.charCode >= 48"> <span class="small text-muted">(NB: Total quiz available questions are <i id="available"></i>)</span></td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- <div class="form-group">
-            <h6 class="col-5">New Timer: </h6><i> Seconds</i>
-            
+        <div class="col-sm-12 mx-auto py-3">
+          <div class="col">
+            <div>
+              <h5>Timer: <span id="timer">25</span> <span class="small ">seconds</span></h5>
+            </div>
+            <div>
+              <h5>Score: <span id="score" class="scoFont">0</span> </h5>
+            </div>
           </div>
-          <br>
-          <div class="form-group">
-            <h6 class="col-5">Total Questions: </h6>
-          </div> -->
-        </form>
 
+          <hr>
+          <div class="row">
+            <div class="col-sm-9 card border-0">
+              <div class="card-body">
+                <div id="question" class="lead font-weight-bold">
+                  <p class="lead"> Example: .... is a high-level, interpreted programming language primarily used for
+                    creating interactive and dynamic web pages.</p>
+                </div>
+                <br>
+                <div id="response">
+                  <p>Ans: <button class="btn btn-light btn-sm">CSS</button> <button
+                      class="btn btn-outline-info btn-sm">JavaScript</button> <button
+                      class="btn btn-light btn-sm">HTML</button></p>
+                </div>
+                <br>
+                <code><div id="result" class="text-muted"></div></code>
+                <br>
+                <samp class="shadow ">
+                  <div id="info"></div>
+                </samp>
+
+                <br>
+
+              </div>
+            </div>
+            <div class="col-sm-3 card border-0" id="chart">
+              <div class="float-right card-body">
+                <canvas id="myChart" width="auto" height="230"></canvas>
+              </div>
+            </div>
+          </div>
+          <!-- <hr style="margin-top: 0px;"> --><br>
+          <div class="col text-center align-bottom">
+            <p>
+              <button class="btn btn-info text-center" id="start">Start &raquo;</button> <button
+                class="btn btn-warning text-center" id="reset" onclick="resetQuiz()">Reset</button>
+              <button type="button" class="btn btn-primary float-right" id="config" data-toggle="modal"
+                data-target="#quizModal"><i class="fas fa-wrench"></i></button>
+
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success" onclick="changeQuiz()">Apply</button>
+    </main>
+
+    <div class="row">
+      <div class="col-12">
+        <div class="card shadow-sm p-3 mb-5 bg-white rounded" id="solutionCard">
+          <div class="card-body">
+            <div class="card-title">
+              <p class="text-muted text-center" style="font-size: 13px;">Solutions To Wrong Answers</p>
+            </div>
+            <hr>
+            <div>
+              <ul id="showWrongQuestions">
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="quizModal" tabindex="-1" role="dialog" aria-labelledby="quizModalTitle"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title justify-content-center" id="">Quiz Configuration</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <h6 style="font-size: 13px;"> New Timer: </h6>
+                  </td>
+                  <td><input type="number" min="1" step="1" name="newTimer" id="newTimer" placeholder="eg: 10"
+                      class="form-control form-control-sm col-4" onkeypress="return event.charCode >= 48"> <span
+                      class="small text-muted">seconds</span> </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h6 style="font-size: 13px;">Total Questions: </h6>
+                  </td>
+                  <td><input type="number" min="1" step="1" name="" id="totalQuestions" placeholder="eg: 5"
+                      class="form-control form-control-sm col-4" onkeypress="return event.charCode >= 48"> <span
+                      class="small text-muted">(NB: Total quiz available questions are <i id="available"></i>)</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" onclick="changeQuiz()">Apply</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
 
-<script src="assets/js/jquery-3.3.1.slim.min.js" ></script>
-<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/popper.min.js" ></script>
-<script src="assets/js/main.js"></script>
-<script src="assets/js/all.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
+  <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/popper.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/all.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 
 </body>
+
 </html>
-
-

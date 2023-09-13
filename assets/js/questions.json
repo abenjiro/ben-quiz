@@ -1,52 +1,52 @@
 {
-	"questions":
-	[{
-		"ques":"IT Consortium is one of ........ leading financial services technology solutions provider.",
-		"ans":"Africa’s"
-	},
-	{
-		"ques":"We exist to provide ........ systems that bring obvious value to our patrons.",
-		"ans":"innovative"
-	},
-	{
-		"ques":"We are committed to high ...... standards both internally and externally.",
-		"ans":"Ethical"
-	},
-	{
-		"ques":"We strive for .......  in our approach to work and delivery.",
-		"ans":"excellence"
-	},
-	{
-		"ques":"We demonstrate ....... in the design of our work and solutions.",
-		"ans":"Creativity"
-	},
-	{
-		"ques":"Our clients trust us to provide them ....... solutions to increase efficiency",
-		"ans":"innovative"
-	},
-	{
-		"ques":"ITC is at home in ensuring that ...... value is derived from what we offer",
-		"ans":"maximum"
-	},
-	{
-		"ques":"We love to solve problems, and to solve them ......",
-		"ans":"holistically"
-	},
-	{
-		"ques":"Our products and services are architected around ......",
-		"ans":"Transflow"
-	},
-	{
-		"ques":"our flagship product, is a payment platform that seeks to simplify and improve the ...... of payments between customers",
-		"ans":"efficiency"
-	},
-	{
-		"ques":"We deliver ...... engagement with customers by providing agile payment solutions that are easy to use",
-		"ans":"realtime"
-	},
-	{
-		"ques":"IT Consortium has completed the ..... certification programme",
-		"ans":"PCI-DSS"
-	},
-]
+	"questions": [
+		{
+			"ques": "A ..... is used to repeatedly execute a block of code until a specified condition is met.",
+			"ans": "loop"
+		},
+		{
+			"ques": "Which of these can create a pop-up dialog box in JavaScript.",
+			"ans": "alert()"
+		},
+		{
+			"ques": "The .... operator returns a string indicating the data type of a value or variable.",
+			"ans": "typeof"
+		},
+		{
+			"ques": "An .... is a data structure in JavaScript used to store a collection of values, indexed by numerical positions.",
+			"ans": "array"
+		},
+		{
+			"ques": ".... is used to print messages or values to the browser's console for debugging.",
+			"ans": "console.log()"
+		},
+		{
+			"ques": "A .... in JavaScript is a sequence of characters, enclosed in either single (') or double ('') quotes",
+			"ans": "string"
+		},
+		{
+			"ques": "An .... in JavaScript is a collection of key-value pairs, where keys are strings (or Symbols) and values can be of any data type",
+			"ans": "object"
+		},
+		{
+			"ques": "You can add an element to the end of an array using the .... method, like this",
+			"ans": "push()"
+		},
+		{
+			"ques": "A .... statement in a function is used to specify the value that the function should output. It also exits the function's execution",
+			"ans": "return"
+		},
+		{
+			"ques": "The .... value represents the intentional absence of any object value or the lack of a value.",
+			"ans": "null"
+		},
+		{
+			"ques": "The .... value represents a variable that has been declared but has not been assigned a value.",
+			"ans": "undefined"
+		},
+		{
+			"ques": "You can access an object's property using .... notation",
+			"ans": "dot"
+		}
+	]
 }
