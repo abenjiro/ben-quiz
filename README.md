@@ -50,10 +50,10 @@ Resetting the quiz will revert to the default mode, requiring new configurations
 It is advisable to answer all questions within the given time to review all corrections.
 
 ## Dev Tools
-**Bootstrap 4**
-**Javascript**
-**toastr** 
-**Chart js**
+* **Bootstrap 4**
+* **Javascript**
+* **toastr** 
+* **Chart js**
 
 
 
