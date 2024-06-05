@@ -1,60 +1,59 @@
+# Ben Quiz Application
 
+Ben Quiz is a software application designed to create and manage quizzes for users.
 
-#BEN QUIZ APPLICATION
+## Description
 
-This quiz application has a default mode with a defined time set to questions. After completing the quiz, your score, together with a list of all wrong answers will be seen.
+This quiz application features a default mode with a predefined time limit for each question. Upon completing the quiz, users will receive their score and a list of all incorrect answers. The application also allows users to customize the time limit and the number of questions to suit their preferences.
 
-The application allows the user configure his/her own time and number of questions.
-Bens Quiz provides a simple graphical chart of your score after quiz over.  
+Ben's Quiz includes a graphical chart that visually represents the user's score upon quiz completion.
 
+## Getting Started
 
-##Installation
-Runs on most current browsers. Google Chrome preferred.
+### Dependencies
 
+* Runs on most current browsers. Google Chrome preferred.
+
+### Installing
+
+* No installation needed. All you need is browser.
+* Download ben-quiz zipped folder
+
+### Executing program
+
+* Open Ben-Quiz folder
+* Open index.html to launch the app
 
 ##Usage
 
-Open Quiz folder.
-open index.html to launch the app.
+#Default Mode
 
-#default mode
+Starting the Quiz: Click the "Start" button below to begin the quiz.
+Timer: The default timer is set to 25 seconds for all questions in the quiz.
+Number of Questions: The quiz currently consists of 10 questions.
+Resetting the Quiz: Click "Reset" to restart the quiz in default mode.
 
-Click on start button below, on application launch to start the quiz.
+#Configuration Mode
+Accessing Settings:On the extreme right of the application, click the blue settings button.
 
-The default timer is 25 seconds for the whole number of questions in the quiz.
+Configuring the Quiz: A modal will pop up with two entry fields:
+New Timer: Set your new time in seconds for the entire quiz.
+Total Questions: Set the new total number of questions.
 
-The total number of questions are currently 10. 
+Note: The total number of questions cannot exceed the available questions in the system.
 
-Click on reset to start the whole process again in default mode.
+Applying Changes: Click the "Apply" button on the modal to accept the new timer and question configurations.
+Upon successful configuration, click the "Start" button to begin the quiz with the new settings.
 
+#Important Notes
+Resetting the quiz will revert to the default mode, requiring new configurations each time.
+It is advisable to answer all questions within the given time to review all corrections.
 
-#configuration mode
-On the extreme right of the application, click on the blue settings button.
-
-A modal will pop up.
-The modal has two entery fields. 
-	1. New Timer: set your new time in `seconds` for the whole number of questions to answer.
-	2. Total Questions: set your new total number of questions to answer.
-		NB: You cannot set your total number questions beyond what is in the system.
-
-Click on the apply button on the modal to accept new changes to timer and questions.
-
-On-success notification, click on start button to begin your quiz with new configurations.
-
-NB:
-	On resetting the quiz, user has to set new config each time else will run in default mode.
-	It is best to answer all questions on time to see all your corrections.
-
-
-
-
-##Built With 
-
-Bootstrap 4
-Javascript
-toastr 
-Chart js
-
+## Dev Tools
+**Bootstrap 4**
+**Javascript**
+**toastr** 
+**Chart js**
 
 
 
