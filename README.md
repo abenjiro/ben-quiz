@@ -57,6 +57,14 @@ It is advisable to answer all questions within the given time to review all corr
 
 
 
+## Sample Project Images
+1. Initial Interface: 
+
+![Image](https://github.com/user-attachments/assets/38ab57dd-3c65-42db-bca2-46c9c7609e9a)
+
+
+
+
 
 
 
