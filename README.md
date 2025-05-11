@@ -62,6 +62,18 @@ It is advisable to answer all questions within the given time to review all corr
 
 ![Image](https://github.com/user-attachments/assets/38ab57dd-3c65-42db-bca2-46c9c7609e9a)
 
+2. Config Timer and Number of Questions if needed: 
+
+![Image](https://github.com/user-attachments/assets/560ec7b0-7441-4423-9d8d-4d8266236778)
+
+3. Start Quiz
+
+![Image](https://github.com/user-attachments/assets/a5420b1c-5647-45bc-99d1-a30ea169d4b6)
+
+
+4. Get Results with Analysis
+   
+![Image](https://github.com/user-attachments/assets/24c6f610-f897-46f5-bd3d-be4fbb48705c)
 
 
 
